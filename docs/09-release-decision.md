@@ -27,7 +27,7 @@
 ## Conditions (must be met before publishing)
 | # | Condition | Control | Owner | Status |
 |---|---|---|---|---|
-| 1 | Human review of the M2 diff (`git show c89c70e`) | Dauren reads the diff, re-runs `npm test` and checks X2–X4 in the browser, then records the approval in `ai-use-record.md` | Omarov Dauren | ☑ behaviour verified by Dauren in Bolt (X2–X4, `evidence/screens/human-bolt-*.png`); ☐ diff reading + local `npm test` not recorded |
+| 1 | Human review of the M2 diff (`git show c89c70e`) | Dauren reads the diff, re-runs `npm test` and checks X2–X4 in the browser, then records the approval in `ai-use-record.md` | Omarov Dauren | ☑ behaviour verified by Dauren in Bolt (X2–X4, `evidence/screens/human-bolt-*.png`); ☑ `npm test` 32/32 run by Dauren in the Bolt terminal; ☐ reading the diff not recorded |
 | 2 | Remove unused `@supabase/supabase-js` (R6) | Reviewed dependency change, following the plan in `08-background-agent.md`; `npm audit --omit=dev` must show 0 | Omarov Dauren | ☐ open |
 | 3 | Dev-server advisories (R4) | Until Vite is upgraded: run `npm run dev` on localhost only (never `--host`) and stop it when not in use | Omarov Dauren | ☐ standing control |
 | 4 | Known limitations are accepted and documented | UI has no automated tests; tests need Node ≥ 22.18; only the first overlapping booking is listed (R10); "scheduled.." typo (R5) | Omarov Dauren | ☑ documented |
