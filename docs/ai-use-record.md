@@ -1,0 +1,25 @@
+# AI-use record and evidence appendix
+
+**AI assistants used:**
+- **Claude** (Anthropic), model `claude-opus-5-5` as configured in a claude.ai agent session, 2026-11-19. Used for this assignment.
+- **Bolt.new**. It generated the original app in Practice #06 (2026-10-08). It was not used in Assignment #05 except to download the source export.
+
+**Context given to Claude:** the assignment PDF (Lesson 10, Assignment #05), the Practice #06 PDF, the Bolt export `project-bolt-sb1-mv1prh99.zip`, and my chat answers. Claude worked in a sandbox where it could run `npm`, `git`, `node` and Playwright, so every command result in `docs/evidence/` is real output from that sandbox.
+
+**Agent instructions disclosure:** `CLAUDE.md` contains `@AGENTS.md`. In this tool `CLAUDE.md` was shown to the assistant, but the `@AGENTS.md` import was not expanded automatically. The assistant read `AGENTS.md` explicitly with a file-read tool after writing it, and followed it for the rest of the session.
+
+| # | Date | Task | Prompt summary | Output used | Problems found / decisions | Human verification |
+|---|---|---|---|---|---|---|
+| 1 | 2026-11-19 | Understand the task | "Explain what the assignment is about; don't solve yet" | Russian summary of the 10 tasks | The AI first said a GitHub repo was required. I asked where that was written, and the PDF actually allows a "source export". Corrected. | I checked the PDF wording myself (Submission details → Required deliverables). |
+| 2 | 2026-11-19 | T01 baseline | Analyse the Bolt export; run install, lint, typecheck, build, tests and audit; map the repo | `docs/01-baseline.md`, `evidence/baseline-*` | `npm test` missing; 3 of 11 UI cases fail; NaN accepted by the rule function | ☐ Dauren re-runs `npm ci && npm run lint && npm run typecheck && npm run build` on the baseline tag |
+| 3 | 2026-11-19 | T02 agent instructions | Write AGENTS.md: purpose, architecture, setup, safe/forbidden actions, review gates | `AGENTS.md`, `CLAUDE.md`, `README.md`, `acceptance-criteria.md` | AGENTS.md was first written for the target state (it mentioned tests that didn't exist yet). It was corrected to the current state before committing and updated as the repo changed. | ☐ Dauren reads AGENTS.md |
+| 4 | 2026-11-19 | T03 pattern | Evaluate Strategy/Adapter for this codebase; at most one refactoring | `03-pattern-decision.md`, commit `bfea826` | Strategy and Adapter rejected as unnecessary; component extraction accepted | Verbatim-move diff is empty; UI cases unchanged at 8/11 (`evidence/refactor-*`). ☐ Dauren skims `git show bfea826 --stat` |
+| 5 | 2026-11-19 | T04 risk review | Read-only review prompt (quoted in `04-risk-review.md`) | 12 candidate risks | 8 confirmed, 2 plausible, **2 unsupported (XSS, off-by-one) rejected** | Each candidate checked with grep, code reading or UI cases; read-only proof in `evidence/risk-review-readonly-check.txt` |
+| 6 | 2026-11-19 | T05 register | Score findings L×I, choose top-2 | `05-risk-register.md` | Top-2: R1 (no tests, 9), R2 (silent input rewrite, 6) | ☐ Dauren agrees with the scores |
+| 7 | 2026-11-19 | T07 M1 | Add tests for the booking rules | `src/utils.test.ts`, commit `817082b` | **The AI proposed `vitest@3.2.4`. I approved it, but the install review showed +2 critical advisories, so it was rejected and reverted.** I chose Node's built-in runner (my answer to the gate question). | ☑ Dauren answered both dependency-gate questions in chat. Mutation check proves the tests catch broken rules. |
+| 8 | 2026-11-19 | T07 M2 | Stop silent clamping; validate input in `checkAvailability` | commit `c89c70e` | Tests written first (5 fail), then 32/32 pass and UI 11/11. **The AI wrote "Approved by Dauren" into the commit message before any review. Corrected in `9e90d04`.** | ☐ **Pending:** Dauren reviews `git show c89c70e` and tries X2–X4 in the browser |
+| 9 | 2026-11-19 | T06, T08, T09, T10 | Draft the readiness audit, background-agent design, release decision and reflection | `06`, `08`, `09`, `10` docs | The reflection is a draft in my voice that I must edit. Decision: CONDITIONAL GO. | ☐ Dauren edits the reflection and confirms the decision |
+
+**Verification sources:** command logs in `docs/evidence/*.txt` (each starts with the exact command and ends with the exit code), screenshots in `docs/evidence/screens/`, git history (`git log --oneline baseline..assignment-05`), and the scripts `docs/evidence/ui-check.mjs` and `docs/evidence/logic-probe.mts` so that results can be reproduced.
+
+**Not fabricated:** no test result, score or approval in these documents is invented. The one premature approval line found in commit `c89c70e` is explicitly corrected. Items marked ☐ are not done yet and must not be described as done.

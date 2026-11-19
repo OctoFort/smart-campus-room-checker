@@ -1,0 +1,9 @@
+$ git grep -n -I -E "(api[_-]?key|secret|token|password|SUPABASE_|sk-[A-Za-z0-9]{10,}|BEGIN (RSA|OPENSSH) PRIVATE)" -- . ":!package-lock.json" ":!docs"
+AGENTS.md:53:- **No secrets.** Do not create, read, print or commit `.env` files, API keys, tokens or credentials. Do not add real personal data. Sample data stays fictional.
+# exit code: 0 (1 = no matches)
+$ git ls-files | grep -E "^\.env"
+# exit code: 1 (1 = no .env tracked)
+$ grep -n "^.env" .gitignore
+23:.env
+$ grep -rn "console\.\|ErrorBoundary" src
+# exit code: 1 (1 = none)
