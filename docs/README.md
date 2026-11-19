@@ -23,7 +23,19 @@ AI-assisted repository customization, agent readiness and software risk governan
 
 ## Commit history
 ```
-<filled in by git log; see below>
+6a842af (tag: baseline) Baseline: Bolt.new export (project-bolt-sb1-mv1prh99), unchanged
+7062ca6 docs: baseline repository map, check results and weaknesses
+9e7738f (main) docs: add README, AGENTS.md, CLAUDE.md pointer and acceptance criteria
+bfea826 refactor: extract presentational components from App.tsx
+588e31a docs: pattern decision, post-refactor check logs, update architecture notes
+f719a6d docs: read-only AI risk review (12 findings) and risk register
+cdd41ba docs: fix line references in risk register
+817082b test: add unit tests for booking rules with Node's built-in runner (M1, risk R1)
+c89c70e fix: validate typed times instead of silently clamping them (M2, risks R2+R3)
+9e90d04 chore: correct commit c89c70e message (approval line was premature)
+f4debff docs: final check logs, mitigation records, updated risk scores
+ae51c64 (HEAD -> assignment-05) docs: readiness audit, background-agent design, release decision, reflection draft, AI-use record
+(+ this index commit)
 ```
 
 ## Reproduce
