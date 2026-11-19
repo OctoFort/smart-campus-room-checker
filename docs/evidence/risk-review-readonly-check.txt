@@ -1,0 +1,5 @@
+$ git status --porcelain
+?? docs/04-risk-review.md
+?? docs/evidence/risk-review-readonly-check.txt
+$ git diff --stat 588e31a -- src package.json package-lock.json index.html   # code/deps changed during review?
+# (no output = no change)
