@@ -1,0 +1,18 @@
+identical  refactor-T1-touching.png
+DIFFERENT  refactor-T2-overlap.png
+identical  refactor-T3-blocked.png
+DIFFERENT  refactor-T4-exactly2h.png
+identical  refactor-T5-over2h.png
+identical  refactor-T6-startsnow.png
+identical  refactor-X1-end-before-start.png
+identical  refactor-X2-end-over-1440.png
+identical  refactor-X3-empty-start.png
+identical  refactor-X4-decimal-start.png
+identical  refactor-mobile-390px.png
+
+# Pixel check of the two DIFFERENT files (Pillow ImageChops.difference):
+# T2-overlap   : 12 pixels differ, bounding box (203,227)-(205,236)
+# T4-exactly2h : 12 pixels differ, bounding box (203,227)-(205,236)
+# Both are the same 3x9 px spot inside the "Room A101" card (location icon). The room buttons use
+# Tailwind `transition-all`, so the screenshot caught the click/hover transition at a slightly
+# different frame. No layout or text difference. Verdict: rendering identical, timing noise only.

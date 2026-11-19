@@ -1,0 +1,3 @@
+$ diff <(baseline App.tsx lines 239-514, components only) <(src/components/*.tsx without import lines and "export ")
+No differences: component code moved verbatim
+# exit code: 0
