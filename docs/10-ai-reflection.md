@@ -8,6 +8,6 @@ The most useful suggestion was to test what the user actually *types*, not just 
 
 The weakest suggestion was the AI's first choice of test runner, `vitest@3.2.4`, picked from memory. Only after installing it did the audit reveal two new critical advisories, and no Vite-5 compatible version fixes them. I rejected it and chose Node's built-in runner instead. The AI also proposed two risks that were unsupported (XSS, an off-by-one in overlap), and it once wrote "approved" into a commit message before I had reviewed the diff. That was corrected with a follow-up commit.
 
-I personally checked [to fill in: e.g. re-ran the tests, opened the app, tried X2–X4, read the M2 diff]. The test results changed decisions twice: the audit numbers decided the test runner, and the 8/11 to 11/11 UI result decided the release status (CONDITIONAL rather than NO-GO).
+I personally imported the final version from GitHub into Bolt and typed 1500, an empty start and 600.5. All three were rejected with the right reason, and I noticed odd hints ("25:00", "19.5 min") that the AI had missed. The test results changed decisions twice: the audit numbers decided the test runner, and the 8/11 to 11/11 UI result decided the release status (CONDITIONAL rather than NO-GO).
 
 AGENTS.md helped, because the dependency gate made the vitest problem visible before it was merged. Next time I would add CI, so the rules are enforced rather than only written down.

@@ -2,9 +2,10 @@
 
 AI-assisted repository customization, agent readiness and software risk governance, applied to the **Smart Campus Room Availability Checker** (Bolt.new app from Practice #06).
 
+**Repository:** https://github.com/OctoFort/smart-campus-room-checker  
 **Baseline:** tag `baseline` (commit `6a842af`) · **Final:** branch `assignment-05` · code final at `c89c70e`
 **Release decision:** **CONDITIONAL GO** · **Readiness:** Level 1 → **Level 2 (Documented)**
-**Tests:** `npm test` missing → **32/32 pass** · **UI reference cases:** 8/11 → **11/11**
+**Tests:** `npm test` missing → **32/32 pass** · **UI reference cases:** 8/11 → **11/11** · **Human check in Bolt:** X2–X4 ✅
 
 | Task | Document |
 |---|---|

@@ -87,3 +87,6 @@ Same machine and commands. Final run at commit `9e90d04` (code identical to `c89
 - Test files are not type-checked.
 - On invalid input only the input errors are listed (early return).
 - The slot line shows "--:-–12:00" while a field is empty. It is understandable, but not pretty.
+- Found by Dauren in Bolt after M2 (R13): an out-of-range end shows the hint "25:00", and a fractional start shows "Duration: 3 hr 19.5 min". The decision and reason are correct; only the helper text is odd.
+
+**Human re-check in Bolt (2026-11-19):** the project imported from GitHub `main` gave the expected result for X2, X3 and X4 (`evidence/screens/human-bolt-*.png`).
