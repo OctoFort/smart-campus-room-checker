@@ -24,3 +24,11 @@ Owner: Omarov Dauren (single-person project). All "before" scores are for the ba
 2. **R2 (score 6): silent input rewriting.** It is the only confirmed risk that produces a **wrong user-visible result** ("Available" for 1380–1500) and a direct AC-1 violation. R3 is closed in the same change, because removing the clamping would otherwise let NaN reach the unguarded function.
 
 R4 and R6 (dependencies) are confirmed but lower: they do not affect what users of the built site receive. They become release conditions (see `09-release-decision.md`). No execution evidence here is invented. Every "Confirmed" row points to a command log, screenshot or code line in `docs/evidence/` or the repository.
+
+## Updated scores after mitigation (Task 07)
+| ID | Before | After | How verified |
+|---|---|---|---|
+| R1 | 9 | **3** | `npm test` 32/32 pass; 4 mutations are each caught (`evidence/m1-mutation-check.txt`) |
+| R2 | 6 | **2** | UI cases X2–X4 pass, 11/11 (`evidence/final-07-ui-cases.txt`) |
+| R3 | 4 | **1** | probe returns "unavailable" + reason (`evidence/m2-logic-probe.txt`); unit tests |
+| R4–R10 | unchanged | unchanged | not mitigated in this assignment; R4 and R6 are release conditions |

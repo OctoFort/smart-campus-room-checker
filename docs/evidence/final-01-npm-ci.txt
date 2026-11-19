@@ -1,0 +1,12 @@
+$ npm ci --no-fund
+# date: 2026-11-19T12:42:47Z  node v22.23.5  npm 10.9.9
+
+added 289 packages, and audited 290 packages in 6s
+
+22 vulnerabilities (2 low, 6 moderate, 14 high)
+
+To address all issues, run:
+  npm audit fix
+
+Run `npm audit` for details.
+# exit code: 0
