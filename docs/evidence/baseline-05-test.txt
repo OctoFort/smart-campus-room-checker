@@ -1,0 +1,8 @@
+$ npm test
+# date: 2026-11-19T12:22:12Z  node v22.23.5  npm 10.9.9
+npm error Missing script: "test"
+npm error
+npm error To see a list of scripts, run:
+npm error   npm run
+npm error A complete log of this run can be found in: /home/claude/.npm/_logs/2026-11-19T12_22_13_071Z-debug-0.log
+# exit code: 1

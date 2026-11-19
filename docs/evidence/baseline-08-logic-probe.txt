@@ -1,0 +1,8 @@
+$ node probe.mts   # direct calls to checkAvailability() with non-integer inputs (Room A101)
+# commit 6a842af, node v22.23.5
+NaN start              {"decision":"available","reasons":[]}
+NaN end                {"decision":"available","reasons":[]}
+NaN current            {"decision":"available","reasons":[]}
+fractional 660.5-720   {"decision":"available","reasons":[]}
+Infinity end           {"decision":"unavailable","reasons":["End time must not exceed 1440 (24:00).","Booking duration is Infinity hr NaN min, which exceeds the 120-minute limit.","Overlaps existing booking \"Faculty Meeting\" (14:00–15:00)."]}
+# exit code: 0
