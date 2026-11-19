@@ -1,6 +1,7 @@
 import type { AvailabilityResult, Room } from "./types";
 
 export function formatTime(minutes: number): string {
+  if (!Number.isInteger(minutes)) return "--:--";
   const h = Math.floor(minutes / 60);
   const m = minutes % 60;
   return `${String(h).padStart(2, "0")}:${String(m).padStart(2, "0")}`;
@@ -22,6 +23,25 @@ export function checkAvailability(
   end: number
 ): AvailabilityResult {
   const reasons: string[] = [];
+
+  // Inputs must be whole minutes. An empty field arrives as NaN. Without this
+  // guard every comparison with NaN is false and the request looks "available".
+  const fields: [string, number][] = [
+    ["Current time", current],
+    ["Start time", start],
+    ["End time", end],
+  ];
+  for (const [label, value] of fields) {
+    if (Number.isNaN(value)) {
+      reasons.push(`${label} is required.`);
+    } else if (!Number.isInteger(value)) {
+      reasons.push(`${label} must be a whole number of minutes.`);
+    }
+  }
+  if (reasons.length > 0) {
+    // The remaining rules cannot be evaluated meaningfully on invalid numbers.
+    return { decision: "unavailable", reasons };
+  }
 
   if (start < 0) {
     reasons.push("Start time must be at least 0 (00:00).");

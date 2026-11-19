@@ -1,0 +1,12 @@
+$ npm test   # new M2 tests written first, before changing src/utils.ts
+# date: 2026-11-19T12:41:11Z
+    not ok 1 - missing start (NaN from an empty field) is rejected as required
+    not ok 2 - missing end and missing current time are rejected as required
+    not ok 3 - fractional minutes are rejected
+    not ok 4 - Infinity is rejected as not a whole number
+not ok 7 - AC-1 input must be a whole number (M2, risk R2/R3)
+    not ok 2 - shows a placeholder instead of NaN:NaN for invalid input
+not ok 8 - formatTime
+# tests 32
+# pass 27
+# fail 5

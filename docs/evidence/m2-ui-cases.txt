@@ -1,0 +1,23 @@
+$ node docs/evidence/ui-check.mjs http://localhost:4173 docs/evidence/screens m2   # after M2 (working tree, pre-commit)
+# date: 2026-11-19T12:41:48Z
+PASS  T1-touching            room=Room A101  typed(now,start,end)=(540,660,720) shown=(540,660,720) -> Available (expected Available)
+PASS  T2-overlap             room=Room A101  typed(now,start,end)=(540,630,690) shown=(540,630,690) -> Unavailable (expected Unavailable)
+        reasons: Overlaps existing booking "Intro to Linguistics" (10:00–11:00).
+PASS  T3-blocked             room=Room C305  typed(now,start,end)=(540,660,720) shown=(540,660,720) -> Unavailable (expected Unavailable)
+        reasons: Room C305 is blocked: Floor maintenance scheduled..
+PASS  T4-exactly2h           room=Room A101  typed(now,start,end)=(540,720,840) shown=(540,720,840) -> Available (expected Available)
+PASS  T5-over2h              room=Lab B202   typed(now,start,end)=(540,600,721) shown=(540,600,721) -> Unavailable (expected Unavailable)
+        reasons: Booking duration is 2 hr 1 min, which exceeds the 120-minute limit.
+PASS  T6-startsnow           room=Room A101  typed(now,start,end)=(540,540,570) shown=(540,540,570) -> Unavailable (expected Unavailable)
+        reasons: Start time must be after the current time (09:00).
+PASS  X1-end-before-start    room=Lab B202   typed(now,start,end)=(540,700,650) shown=(540,700,650) -> Unavailable (expected Unavailable)
+        reasons: Start time must be earlier than end time.
+PASS  X2-end-over-1440       room=Lab B202   typed(now,start,end)=(540,1380,1500) shown=(540,1380,1500) -> Unavailable (expected Unavailable + reason /1440/)
+        reasons: End time must not exceed 1440 (24:00).
+PASS  X3-empty-start         room=Lab B202   typed(now,start,end)=(540,,720) shown=(540,,720) -> Unavailable (expected Unavailable + reason /required/i)
+        reasons: Start time is required.
+PASS  X4-decimal-start       room=Lab B202   typed(now,start,end)=(540,600.5,700) shown=(540,600.5,700) -> Unavailable (expected Unavailable + reason /whole number/i)
+        reasons: Start time must be a whole number of minutes.
+PASS  M1-mobile-390px        horizontal overflow=false
+
+TOTAL: 11/11 matched expected result

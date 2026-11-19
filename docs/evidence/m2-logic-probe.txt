@@ -1,0 +1,6 @@
+$ node docs/evidence/logic-probe.mts   # same probe as baseline-08, after M2
+NaN start              {"decision":"unavailable","reasons":["Start time is required."]}
+NaN end                {"decision":"unavailable","reasons":["End time is required."]}
+NaN current            {"decision":"unavailable","reasons":["Current time is required."]}
+fractional 660.5-720   {"decision":"unavailable","reasons":["Start time must be a whole number of minutes."]}
+Infinity end           {"decision":"unavailable","reasons":["End time must be a whole number of minutes."]}

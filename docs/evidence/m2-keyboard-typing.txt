@@ -1,0 +1,6 @@
+$ node keyboard.mjs   # real keystrokes in End time (Lab B202, current 540, start 660): select all, Backspace, type 1-5-0-0
+after clearing end: field="" -> Unavailable | End time is required.
+typed "1": field="1" -> Unavailable | Start time must be earlier than end time.
+typed "5": field="15" -> Unavailable | Start time must be earlier than end time.
+typed "0": field="150" -> Unavailable | Start time must be earlier than end time.
+typed "0": field="1500" -> Unavailable | End time must not exceed 1440 (24:00). | Booking duration is 14 hr, which exceeds the 120-minute limit. | Overlaps existing booking "Robotics Workshop" (13:00–14:30).

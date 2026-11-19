@@ -2,7 +2,7 @@
 // Run with: npm test  (Node's built-in test runner, Node >= 22.18 for TypeScript type stripping)
 import { describe, test } from "node:test";
 import assert from "node:assert/strict";
-import { checkAvailability } from "./utils.ts";
+import { checkAvailability, formatTime } from "./utils.ts";
 import { ROOMS } from "./data.ts";
 import type { Room } from "./types.ts";
 
@@ -122,5 +122,44 @@ describe("AC-5 read-only and complete feedback", () => {
   });
   test("an available result has no reasons", () => {
     assert.deepEqual(checkAvailability(A101, 540, 660, 720).reasons, []);
+  });
+});
+
+describe("AC-1 input must be a whole number (M2, risk R2/R3)", () => {
+  test("missing start (NaN from an empty field) is rejected as required", () => {
+    const res = checkAvailability(B202, 540, NaN, 720);
+    assert.equal(res.decision, "unavailable");
+    assert.deepEqual(res.reasons, ["Start time is required."]);
+  });
+  test("missing end and missing current time are rejected as required", () => {
+    assert.deepEqual(checkAvailability(B202, 540, 600, NaN).reasons, ["End time is required."]);
+    assert.deepEqual(checkAvailability(B202, NaN, 600, 660).reasons, ["Current time is required."]);
+  });
+  test("fractional minutes are rejected", () => {
+    const res = checkAvailability(B202, 540, 600.5, 700);
+    assert.equal(res.decision, "unavailable");
+    assert.deepEqual(res.reasons, ["Start time must be a whole number of minutes."]);
+  });
+  test("Infinity is rejected as not a whole number", () => {
+    assert.deepEqual(checkAvailability(B202, 540, 600, Infinity).reasons, [
+      "End time must be a whole number of minutes.",
+    ]);
+  });
+  test("an out-of-range end typed by the user is rejected, not clamped (X2)", () => {
+    const res = checkAvailability(B202, 540, 1380, 1500);
+    assert.equal(res.decision, "unavailable");
+    assert.ok(res.reasons.some((r) => r.includes("must not exceed 1440")));
+  });
+});
+
+describe("formatTime", () => {
+  test("formats whole minutes as HH:MM", () => {
+    assert.equal(formatTime(0), "00:00");
+    assert.equal(formatTime(605), "10:05");
+    assert.equal(formatTime(1440), "24:00");
+  });
+  test("shows a placeholder instead of NaN:NaN for invalid input", () => {
+    assert.equal(formatTime(NaN), "--:--");
+    assert.equal(formatTime(600.5), "--:--");
   });
 });

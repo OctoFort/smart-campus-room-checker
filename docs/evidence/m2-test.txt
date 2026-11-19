@@ -1,0 +1,265 @@
+$ npm run test
+# date: 2026-11-19T12:42:20Z  node v22.23.5  npm 10.9.9
+
+> vite-react-typescript-starter@0.0.0 test
+> node --test "src/**/*.test.ts"
+
+TAP version 13
+# Subtest: reference cases T1–T6 (Practice \#06)
+    # Subtest: T1 touching
+    ok 1 - T1 touching
+      ---
+      duration_ms: 0.751477
+      type: 'test'
+      ...
+    # Subtest: T2 overlap
+    ok 2 - T2 overlap
+      ---
+      duration_ms: 0.144523
+      type: 'test'
+      ...
+    # Subtest: T3 blocked
+    ok 3 - T3 blocked
+      ---
+      duration_ms: 0.082238
+      type: 'test'
+      ...
+    # Subtest: T4 exactly 2h
+    ok 4 - T4 exactly 2h
+      ---
+      duration_ms: 0.125568
+      type: 'test'
+      ...
+    # Subtest: T5 over 2h
+    ok 5 - T5 over 2h
+      ---
+      duration_ms: 0.112595
+      type: 'test'
+      ...
+    # Subtest: T6 starts now
+    ok 6 - T6 starts now
+      ---
+      duration_ms: 0.068919
+      type: 'test'
+      ...
+    1..6
+ok 1 - reference cases T1–T6 (Practice \#06)
+  ---
+  duration_ms: 2.236734
+  type: 'suite'
+  ...
+# Subtest: AC-1 valid interval
+    # Subtest: start must be earlier than end
+    ok 1 - start must be earlier than end
+      ---
+      duration_ms: 1.243163
+      type: 'test'
+      ...
+    # Subtest: start equal to end is rejected
+    ok 2 - start equal to end is rejected
+      ---
+      duration_ms: 0.300465
+      type: 'test'
+      ...
+    # Subtest: start below 0 is rejected
+    ok 3 - start below 0 is rejected
+      ---
+      duration_ms: 0.232879
+      type: 'test'
+      ...
+    # Subtest: end above 1440 is rejected
+    ok 4 - end above 1440 is rejected
+      ---
+      duration_ms: 0.242938
+      type: 'test'
+      ...
+    # Subtest: end exactly 1440 is allowed
+    ok 5 - end exactly 1440 is allowed
+      ---
+      duration_ms: 0.103447
+      type: 'test'
+      ...
+    # Subtest: start must be strictly after current time
+    ok 6 - start must be strictly after current time
+      ---
+      duration_ms: 0.067159
+      type: 'test'
+      ...
+    1..6
+ok 2 - AC-1 valid interval
+  ---
+  duration_ms: 2.479004
+  type: 'suite'
+  ...
+# Subtest: AC-2 maximum duration 120 minutes
+    # Subtest: exactly 120 minutes is allowed
+    ok 1 - exactly 120 minutes is allowed
+      ---
+      duration_ms: 0.062513
+      type: 'test'
+      ...
+    # Subtest: 121 minutes is rejected with a duration reason only
+    ok 2 - 121 minutes is rejected with a duration reason only
+      ---
+      duration_ms: 0.133032
+      type: 'test'
+      ...
+    1..2
+ok 3 - AC-2 maximum duration 120 minutes
+  ---
+  duration_ms: 0.250098
+  type: 'suite'
+  ...
+# Subtest: AC-3 blocked room
+    # Subtest: blocked room is unavailable even for a free slot
+    ok 1 - blocked room is unavailable even for a free slot
+      ---
+      duration_ms: 0.06606
+      type: 'test'
+      ...
+    1..1
+ok 4 - AC-3 blocked room
+  ---
+  duration_ms: 0.102464
+  type: 'suite'
+  ...
+# Subtest: AC-4 overlap, touching allowed
+    # Subtest: touching the end of a booking is allowed
+    ok 1 - touching the end of a booking is allowed
+      ---
+      duration_ms: 0.09663
+      type: 'test'
+      ...
+    # Subtest: touching the start of a booking is allowed
+    ok 2 - touching the start of a booking is allowed
+      ---
+      duration_ms: 0.038813
+      type: 'test'
+      ...
+    # Subtest: partial overlap at the end (630–690) is rejected
+    ok 3 - partial overlap at the end (630–690) is rejected
+      ---
+      duration_ms: 0.091574
+      type: 'test'
+      ...
+    # Subtest: partial overlap at the start (570–630) is rejected
+    ok 4 - partial overlap at the start (570–630) is rejected
+      ---
+      duration_ms: 0.038532
+      type: 'test'
+      ...
+    # Subtest: request inside booking (610–650) is rejected
+    ok 5 - request inside booking (610–650) is rejected
+      ---
+      duration_ms: 0.039919
+      type: 'test'
+      ...
+    # Subtest: request contains booking (590–670) is rejected
+    ok 6 - request contains booking (590–670) is rejected
+      ---
+      duration_ms: 0.032102
+      type: 'test'
+      ...
+    # Subtest: identical interval (600–660) is rejected
+    ok 7 - identical interval (600–660) is rejected
+      ---
+      duration_ms: 0.032232
+      type: 'test'
+      ...
+    1..7
+ok 5 - AC-4 overlap, touching allowed
+  ---
+  duration_ms: 0.539696
+  type: 'suite'
+  ...
+# Subtest: AC-5 read-only and complete feedback
+    # Subtest: checking never modifies the sample data
+    ok 1 - checking never modifies the sample data
+      ---
+      duration_ms: 0.21045
+      type: 'test'
+      ...
+    # Subtest: every failed rule is reported
+    ok 2 - every failed rule is reported
+      ---
+      duration_ms: 0.054695
+      type: 'test'
+      ...
+    # Subtest: an available result has no reasons
+    ok 3 - an available result has no reasons
+      ---
+      duration_ms: 0.671124
+      type: 'test'
+      ...
+    1..3
+ok 6 - AC-5 read-only and complete feedback
+  ---
+  duration_ms: 1.014719
+  type: 'suite'
+  ...
+# Subtest: AC-1 input must be a whole number (M2, risk R2/R3)
+    # Subtest: missing start (NaN from an empty field) is rejected as required
+    ok 1 - missing start (NaN from an empty field) is rejected as required
+      ---
+      duration_ms: 0.17606
+      type: 'test'
+      ...
+    # Subtest: missing end and missing current time are rejected as required
+    ok 2 - missing end and missing current time are rejected as required
+      ---
+      duration_ms: 0.063034
+      type: 'test'
+      ...
+    # Subtest: fractional minutes are rejected
+    ok 3 - fractional minutes are rejected
+      ---
+      duration_ms: 0.051294
+      type: 'test'
+      ...
+    # Subtest: Infinity is rejected as not a whole number
+    ok 4 - Infinity is rejected as not a whole number
+      ---
+      duration_ms: 0.041671
+      type: 'test'
+      ...
+    # Subtest: an out-of-range end typed by the user is rejected, not clamped (X2)
+    ok 5 - an out-of-range end typed by the user is rejected, not clamped (X2)
+      ---
+      duration_ms: 0.057612
+      type: 'test'
+      ...
+    1..5
+ok 7 - AC-1 input must be a whole number (M2, risk R2/R3)
+  ---
+  duration_ms: 0.482316
+  type: 'suite'
+  ...
+# Subtest: formatTime
+    # Subtest: formats whole minutes as HH:MM
+    ok 1 - formats whole minutes as HH:MM
+      ---
+      duration_ms: 0.06428
+      type: 'test'
+      ...
+    # Subtest: shows a placeholder instead of NaN:NaN for invalid input
+    ok 2 - shows a placeholder instead of NaN:NaN for invalid input
+      ---
+      duration_ms: 0.685294
+      type: 'test'
+      ...
+    1..2
+ok 8 - formatTime
+  ---
+  duration_ms: 0.809392
+  type: 'suite'
+  ...
+1..8
+# tests 32
+# suites 8
+# pass 32
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 133.841926
+# exit code: 0
