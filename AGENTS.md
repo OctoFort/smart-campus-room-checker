@@ -9,7 +9,8 @@ Smart Campus Room Availability Checker is a single-page prototype. A student pic
 - `src/utils.ts` holds the domain logic: `checkAvailability(room, current, start, end)`, a **pure** function that returns `{ decision, reasons[] }`. All booking rules live here and only here.
 - `src/data.ts` holds the fictional sample data (`ROOMS`). It is read-only at runtime.
 - `src/types.ts` holds the shared types.
-- `src/App.tsx` is the page (state + presentational components). Components must contain no booking rules.
+- `src/App.tsx` is the page container: state, layout and composition.
+- `src/components/` holds the presentational components (`Card`, `NumberField`, `ResultBanner`, `Timeline`). They display data and contain **no booking rules**.
 - Stack: Vite 5, React 18, TypeScript (strict), Tailwind CSS 3, lucide-react icons. There is no backend, network calls, storage or auth.
 
 ## Setup

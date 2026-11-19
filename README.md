@@ -29,7 +29,8 @@ npm run dev        # open the printed localhost URL
 src/utils.ts   booking rules: checkAvailability() (pure function) + time formatting
 src/data.ts    fictional rooms and bookings
 src/types.ts   shared types
-src/App.tsx    page and UI components
+src/App.tsx    page container (state + layout)
+src/components/  presentational components (Card, NumberField, ResultBanner, Timeline)
 ```
 
 ## Rules (acceptance criteria)
