@@ -15,7 +15,7 @@ Smart Campus Room Availability Checker is a single-page prototype. A student pic
 
 ## Setup
 ```bash
-npm ci            # install exactly what package-lock.json pins (Node 20+; developed on Node 22)
+npm ci            # install exactly what package-lock.json pins (Node >= 22.18, see "engines")
 npm run dev       # local dev server
 ```
 
@@ -25,6 +25,7 @@ npm run dev       # local dev server
 | `npm ci` | install from the lockfile (never `npm install <pkg>`) |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | `tsc --noEmit` |
+| `npm test` | unit tests (`node --test`, Node's built-in runner, no extra dependency) |
 | `npm run build` | production build into `dist/` |
 | `npm run dev` / `npm run preview` | local servers only |
 | `git status`, `git diff`, `git log`, `git add`, `git commit` on your own branch | version control |
@@ -32,18 +33,20 @@ npm run dev       # local dev server
 ## Coding conventions
 - TypeScript strict. Avoid `any` and non-null assertions (`!`) in new code.
 - Keep booking rules in `src/utils.ts`. Components may format and display, but must not decide availability.
-- A new rule needs a matching reason string (and a unit test once the test suite exists).
+- A new rule needs a matching reason string and a unit test in `src/utils.test.ts`.
 - Use Tailwind utility classes and existing components. Do not add UI or icon libraries.
 - Keep changes small and focused: one concern per commit, with a message that says *why*.
 - Match the existing style: double quotes and 2-space indent in `src/`.
 
 ## Test expectations
-Before handing back any change, run all three and report the actual output:
+Before handing back any change, run all four and report the actual output, including pass/fail totals:
 ```bash
-npm run lint && npm run typecheck && npm run build
+npm run lint && npm run typecheck && npm test && npm run build
 ```
-- All three must pass. If one fails, say so; never hide or fabricate results.
-- There is no automated test suite yet (see risk R1). Verify T1–T6 manually in the browser and say that you did.
+- All four must pass. If one fails, say so; never hide or fabricate results.
+- Any behavior change in `checkAvailability` needs a unit test in `src/utils.test.ts`. Write the test first and show it failing.
+- Test files are type-stripped by Node, not type-checked by `tsc` (they are excluded in `tsconfig.app.json`). Keep them simple.
+- UI behavior has no automated tests. For UI changes, check T1–T6 in the browser (`npm run dev`) and say that you did.
 - The acceptance criteria in `docs/acceptance-criteria.md` (AC-1 to AC-5) must still hold. Reference cases T1–T6 must keep their expected results.
 
 ## Forbidden actions

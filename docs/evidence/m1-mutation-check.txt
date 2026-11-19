@@ -1,0 +1,66 @@
+# Mutation check: does the new suite catch a broken rule? Each mutation is applied, tested, then reverted with git checkout.
+# date: 2026-11-19T12:40:14Z  node v22.23.5
+
+## Mutation: overlap uses <= / >= (touching rejected)
+-    if (start < b.end && end > b.start) {
++    if (start <= b.end && end >= b.start) {
+$ npm test
+    not ok 1 - T1 touching
+    not ok 4 - T4 exactly 2h
+not ok 1 - reference cases T1–T6 (Practice \#06)
+    not ok 1 - blocked room is unavailable even for a free slot
+not ok 4 - AC-3 blocked room
+    not ok 1 - touching the end of a booking is allowed
+    not ok 2 - touching the start of a booking is allowed
+not ok 5 - AC-4 overlap, touching allowed
+    not ok 3 - an available result has no reasons
+not ok 6 - AC-5 read-only and complete feedback
+# tests 25
+# pass 19
+# fail 6
+
+## Mutation: duration uses >= 120 (exactly 2h rejected)
+-  if (duration > 120) {
++  if (duration >= 120) {
+$ npm test
+    not ok 4 - T4 exactly 2h
+not ok 1 - reference cases T1–T6 (Practice \#06)
+    not ok 1 - exactly 120 minutes is allowed
+not ok 3 - AC-2 maximum duration 120 minutes
+# tests 25
+# pass 23
+# fail 2
+
+## Mutation: start == current accepted
+-  if (start <= current) {
++  if (start < current) {
+$ npm test
+    not ok 6 - T6 starts now
+not ok 1 - reference cases T1–T6 (Practice \#06)
+    not ok 6 - start must be strictly after current time
+not ok 2 - AC-1 valid interval
+    not ok 2 - every failed rule is reported
+not ok 6 - AC-5 read-only and complete feedback
+# tests 25
+# pass 22
+# fail 3
+
+## Mutation: blocked check removed
+-  if (room.blocked) {
++  if (false && room.blocked) {
+$ npm test
+    not ok 3 - T3 blocked
+not ok 1 - reference cases T1–T6 (Practice \#06)
+    not ok 1 - blocked room is unavailable even for a free slot
+not ok 4 - AC-3 blocked room
+    not ok 2 - every failed rule is reported
+not ok 6 - AC-5 read-only and complete feedback
+# tests 25
+# pass 22
+# fail 3
+
+## After reverting all mutations
+$ npm test
+# tests 25
+# pass 25
+# fail 0

@@ -9,7 +9,7 @@ A single-page prototype that checks whether a campus room is free for a requeste
 It is read-only. Nothing is saved, confirmed or sent anywhere, and all data is fictional (`src/data.ts`).
 
 ## Quick start
-Requires Node.js 20+ (developed on Node 22) and npm.
+Requires Node.js 22.18+ (the unit tests use Node's built-in TypeScript support) and npm.
 ```bash
 npm ci
 npm run dev        # open the printed localhost URL
@@ -21,12 +21,14 @@ npm run dev        # open the printed localhost URL
 | `npm run dev` | Vite dev server |
 | `npm run lint` | ESLint |
 | `npm run typecheck` | TypeScript type check (`tsc --noEmit`) |
+| `npm test` | unit tests for the booking rules (`src/utils.test.ts`, Node's built-in test runner) |
 | `npm run build` | production build into `dist/` |
 | `npm run preview` | serve the built `dist/` locally |
 
 ## Project structure
 ```
 src/utils.ts   booking rules: checkAvailability() (pure function) + time formatting
+src/utils.test.ts  unit tests for the rules (AC-1 to AC-5, cases T1-T6)
 src/data.ts    fictional rooms and bookings
 src/types.ts   shared types
 src/App.tsx    page container (state + layout)

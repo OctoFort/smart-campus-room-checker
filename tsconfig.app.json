@@ -26,5 +26,7 @@
     "noUnusedParameters": false,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"]
+  "include": ["src"],
+  /* Unit tests run under Node's test runner (node:test types are not installed); they are type-stripped, not type-checked */
+  "exclude": ["src/**/*.test.ts"]
 }
